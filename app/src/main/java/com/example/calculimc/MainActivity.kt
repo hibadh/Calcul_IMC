@@ -11,6 +11,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+    val historique = mutableListOf<String>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity() {
 
         val textViewImc = findViewById<TextView>(R.id.textViewImc)
         val textViewCategorie = findViewById<TextView>(R.id.textViewCategorie)
+
+        val historiqueTextView = findViewById<TextView>(R.id.historiqueTextView)
+
+
         buttonEffacer.setOnClickListener {
             editTextPoids.text.clear()
             editTextTaille.text.clear()
@@ -52,7 +58,10 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             val imc = poids / (taille * taille)
-            textViewImc.text = "IMC : %.2f".format(imc)
+            val resultat = "IMC : %.2f".format(imc)
+            historique.add(resultat)
+            historiqueTextView.text = historique.joinToString("\n")
+            textViewImc.text = resultat
             if (imc < 18.5) {
                 textViewCategorie.text = getString(R.string.insuffisance)
                 textViewCategorie.setTextColor(Color.rgb(255, 165, 0))
