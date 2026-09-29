@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             val poids = poidsTexte.toDouble()
-            val taille = tailleTexte.toDouble()
+            val taille = tailleTexte.toDouble()/100
 
             if (poids <= 0 || taille <= 0){
                 textViewImc.text = getString(R.string.valeurs_positives)

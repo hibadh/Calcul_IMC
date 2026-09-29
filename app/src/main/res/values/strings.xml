@@ -6,7 +6,7 @@
 
     <string name="poids_hint">Poids en kg</string>
 
-    <string name="taille_hint">Taille en m</string>
+    <string name="taille_hint">Taille en cm</string>
 
     <string name="calculer">Calculer</string>
 
