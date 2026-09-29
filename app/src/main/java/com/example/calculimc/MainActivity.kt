@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
     val historique = mutableListOf<String>()
@@ -28,12 +29,20 @@ class MainActivity : AppCompatActivity() {
 
         val buttonCalculer = findViewById<Button>(R.id.buttonCalculer)
         val buttonEffacer = findViewById<Button>(R.id.buttonEffacer)
+        val buttonPartager = findViewById<Button>(R.id.buttonPartager)
 
         val textViewImc = findViewById<TextView>(R.id.textViewImc)
         val textViewCategorie = findViewById<TextView>(R.id.textViewCategorie)
 
         val historiqueTextView = findViewById<TextView>(R.id.historiqueTextView)
 
+        buttonPartager.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, textViewImc.text.toString())
+            val chooser = Intent.createChooser(intent, "Partager avec")
+            startActivity(chooser)
+        }
 
         buttonEffacer.setOnClickListener {
             editTextPoids.text.clear()
